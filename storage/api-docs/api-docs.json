@@ -1,0 +1,1430 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Trueblue",
+        "description": "Trueblue OpenApi description",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/v1/carts/{id}": {
+            "get": {
+                "tags": [
+                    "Cart"
+                ],
+                "operationId": "cart.getCart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "rowId": {
+                                                        "type": "string",
+                                                        "example": "4c13f596efdd61467998d9100b0a0ca1"
+                                                    },
+                                                    "id": {
+                                                        "type": "string",
+                                                        "example": "9ymo1knaAZ"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "iPad Mini 4"
+                                                    },
+                                                    "qty": {
+                                                        "type": "string",
+                                                        "example": "1"
+                                                    },
+                                                    "price": {
+                                                        "type": "number",
+                                                        "example": "100"
+                                                    },
+                                                    "tax": {
+                                                        "type": "number",
+                                                        "example": "0"
+                                                    },
+                                                    "subtotal": {
+                                                        "type": "number",
+                                                        "example": "100"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "subtotal": {
+                                            "type": "number",
+                                            "example": "100.00"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Cart"
+                ],
+                "operationId": "cart.createCart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Cart"
+                ],
+                "operationId": "cart.emptyCart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/carts": {
+            "post": {
+                "tags": [
+                    "Cart"
+                ],
+                "operationId": "cart.createCart",
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "identifier": {
+                                            "type": "string",
+                                            "example": "nA3RdgxGRrA4HvEeKcLARNfmunAewf6R"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/carts/{id}/{itemId}": {
+            "put": {
+                "tags": [
+                    "Cart"
+                ],
+                "operationId": "cart.createCart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "itemId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "quantity": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Cart"
+                ],
+                "operationId": "cart.updateItem",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "itemId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/categories": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "operationId": "category.listCategories",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Category"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "operationId": "category.showCategory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/categories/{id}/products": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "operationId": "category.listProducts",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/i18n/{locale}": {
+            "get": {
+                "tags": [
+                    "Misc"
+                ],
+                "operationId": "getI18n",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "zh-HK"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "{key}": {
+                                            "type": "string",
+                                            "example": "{value}"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/locations/{id}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "operationId": "location.showLocation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Location"
+                                        },
+                                        {
+                                            "properties": {
+                                                "links": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Link"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/me/favourites/products": {
+            "get": {
+                "tags": [
+                    "Me"
+                ],
+                "operationId": "me.listFavourites",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/me/reviews/products": {
+            "get": {
+                "tags": [
+                    "Me"
+                ],
+                "operationId": "me.listReviews",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/me": {
+            "get": {
+                "tags": [
+                    "Me"
+                ],
+                "operationId": "me.showMe",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Me"
+                ],
+                "operationId": "me.updateMe",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Peter Chan"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "me@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/news/{id}": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "operationId": "news.showNews",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/News"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/oauth/token": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "operationId": "auth.oauth.token",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IssueTokenRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IssueTokenResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/products/{id}/reviews": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "product.listReviews",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Review"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "product.createReview",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    },
+                                    "rating": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/products/{id}/favourite": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "product.favouriteProduct.add",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "product.favouriteProduct.remove",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/products": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "product.listProducts",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/products/search": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "product.searchProduct",
+                "parameters": [
+                    {
+                        "name": "filter[name]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/products/{id}": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "product.showProduct",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Product"
+                                        },
+                                        {
+                                            "properties": {
+                                                "categories": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Category"
+                                                    }
+                                                },
+                                                "attributes": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/ProductAttribute"
+                                                    }
+                                                },
+                                                "variants": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Product"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/regions/{id}/locations": {
+            "get": {
+                "tags": [
+                    "Region"
+                ],
+                "operationId": "region.listLocations",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Location"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/regions/{id}/locations/nearest": {
+            "get": {
+                "tags": [
+                    "Region"
+                ],
+                "operationId": "region.listNearestLocations",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "lng",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "isOpening"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Location"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/regions/{id}/news": {
+            "get": {
+                "tags": [
+                    "Region"
+                ],
+                "operationId": "region.listNews",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/News"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/regions": {
+            "get": {
+                "tags": [
+                    "Region"
+                ],
+                "operationId": "region.listRegion",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Region"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/regions/{id}": {
+            "get": {
+                "tags": [
+                    "Region"
+                ],
+                "operationId": "region.showRegion",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Region"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/qrcode/text/{content}": {
+            "get": {
+                "tags": [
+                    "Misc"
+                ],
+                "operationId": "me.showMe",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "IssueTokenRequest": {
+                "oneOf": [
+                    {
+                        "properties": {
+                            "grant_type": {
+                                "type": "string",
+                                "example": "password"
+                            },
+                            "client_id": {
+                                "type": "string",
+                                "example": "1"
+                            },
+                            "client_secret": {
+                                "type": "string",
+                                "example": "qqMLRiwnswM68feyiehAVwBbg6yqAfNYEdDE9fnl"
+                            },
+                            "username": {
+                                "type": "string",
+                                "example": "me@example.com"
+                            },
+                            "password": {
+                                "type": "string",
+                                "example": "password"
+                            },
+                            "scope": {
+                                "type": "string",
+                                "example": ""
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "grant_type": {
+                                "type": "string",
+                                "example": "social"
+                            },
+                            "client_id": {
+                                "type": "string",
+                                "example": "1"
+                            },
+                            "client_secret": {
+                                "type": "string",
+                                "example": "qqMLRiwnswM68feyiehAVwBbg6yqAfNYEdDE9fnl"
+                            },
+                            "network": {
+                                "type": "string",
+                                "enum": [
+                                    "facebook"
+                                ],
+                                "example": "facebook"
+                            },
+                            "access_token": {
+                                "type": "string",
+                                "example": ""
+                            },
+                            "scope": {
+                                "type": "string",
+                                "example": ""
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "IssueTokenResponse": {
+                "properties": {
+                    "token_type": {
+                        "type": "string",
+                        "example": "Bearer"
+                    },
+                    "expires_in": {
+                        "type": "integer",
+                        "example": "31536000"
+                    },
+                    "access_token": {
+                        "type": "string"
+                    },
+                    "refresh_token": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Category": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "erBEOm6vAy"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "手機及平板電腦"
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "9ymo1knaAZ"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "手提電話"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Link": {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "instagram"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "title"
+                    },
+                    "link": {
+                        "type": "string",
+                        "example": "https://www.instagram.com/nike/"
+                    }
+                },
+                "type": "object"
+            },
+            "Location": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "erBEOm6vAy"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "銅鑼灣廣場一期"
+                    },
+                    "lat": {
+                        "type": "number",
+                        "format": "double",
+                        "example": 22.280212
+                    },
+                    "lng": {
+                        "type": "number",
+                        "format": "double",
+                        "example": 114.180363
+                    },
+                    "isOpening": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "openingHours": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "weekday": {
+                                    "type": "integer",
+                                    "example": 0
+                                },
+                                "openAt": {
+                                    "type": "string",
+                                    "example": "08:00"
+                                },
+                                "closeAt": {
+                                    "type": "string",
+                                    "example": "17:00"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "News": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "erBEOm6vAy"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "title"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "content"
+                    }
+                },
+                "type": "object"
+            },
+            "Product": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "erBEOm6vAy"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "iPad Mini 4"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "description"
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "100"
+                    },
+                    "rating": {
+                        "type": "number",
+                        "example": "4"
+                    },
+                    "stock": {
+                        "type": "number",
+                        "example": "0"
+                    },
+                    "hasStock": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "isVip": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "isVariant": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                },
+                "type": "object"
+            },
+            "ProductAttribute": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "color"
+                    },
+                    "options": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "灰色",
+                            "銀色",
+                            "金色"
+                        ]
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "Region": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "erBEOm6vAy"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "香港"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                },
+                "type": "object"
+            },
+            "Review": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "erBEOm6vAy"
+                    },
+                    "user": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "title"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "good product"
+                    },
+                    "rating": {
+                        "type": "number",
+                        "example": "4"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User",
+                "properties": {
+                    "id": {
+                        "schema": "User",
+                        "type": "string",
+                        "example": "erBEOm6vAy"
+                    },
+                    "name": {
+                        "schema": "User",
+                        "type": "string",
+                        "example": "Peter Pan"
+                    },
+                    "email": {
+                        "schema": "User",
+                        "type": "string",
+                        "example": "me@example.com",
+                        "nullable": true
+                    },
+                    "isVip": {
+                        "schema": "User",
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth"
+        },
+        {
+            "name": "Me"
+        },
+        {
+            "name": "Region"
+        },
+        {
+            "name": "Misc"
+        }
+    ]
+}
